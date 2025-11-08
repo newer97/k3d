@@ -11,8 +11,8 @@ spec:
     namespace: development
   source:
     repoURL: https://github.com/newer97/k3s-local-vms
-    targetRevision: main
-    path: src/apps/
+    targetRevision: master
+    path: src/applications/
     directory:
       recurse: true
       jsonnet: {}
