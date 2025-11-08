@@ -38,4 +38,6 @@ argocd app create -f app-of-apps.yml
 
 ```bash
 kubectl create secret generic cloudflare-api-token-secret --from-literal=api-token='<API Token>' -n cert-manager
+
+kubectl create namespace letsencrypt-wildcard-cert
 ```
