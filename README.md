@@ -31,5 +31,11 @@ argocd repocreds add https://github.com/newer97/k3s-local-vms --username newer97
 
 ### apply app-of-apps
 ```bash
-kubectl apply -f app-of-apps.yml
+argocd app create -f app-of-apps.yml
+```
+
+### cf token ( for certs )
+
+```bash
+kubectl create secret generic cloudflare-api-token-secret --from-literal=api-token='<API Token>' -n cert-manager
 ```
