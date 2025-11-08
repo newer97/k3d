@@ -21,6 +21,6 @@ spec:
           port: 80
           scheme: h2c
   tls:
-    - secretName: letsencrypt-wildcard-cert-naser.cloud
-      hosts:
-        - argocd.k3s-local.naser.cloud
+    secretName: letsencrypt-wildcard-cert-naser.cloud
+    hosts:
+      - argocd.k3s-local.naser.cloud
