@@ -22,3 +22,14 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 ```
 
 
+### add private repo 
+
+```bash
+argocd repocreds add https://github.com/newer97/k3s-local-vms --username newer97 --password accesstoken
+```
+
+
+### apply app-of-apps
+```bash
+kubectl apply -f app-of-apps.yml
+```

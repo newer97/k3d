@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps
+  labels:
+    project.type: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: development
+  source:
+    repoURL: https://github.com/newer97/k3s-local-vms
+    targetRevision: main
+    path: src/apps/
+    directory:
+      recurse: true
+      jsonnet: {}
+  syncPolicy:
+    automated:
+      selfHeal: true
+      allowEmpty: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
