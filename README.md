@@ -41,3 +41,21 @@ kubectl create secret generic cloudflare-api-token-secret --from-literal=api-tok
 
 kubectl create namespace letsencrypt-wildcard-cert
 ```
+
+
+# VPN
+
+### aerver public key
+
+```bash
+AGoxsjDofZrYrdN80nSP1XhlXTcSEzJ1uZbQnehMdWM=
+```
+
+## create new peer
+
+```bash
+wg genkey > client1_private_key
+wg pubkey < client1_private_key > client1_public_key
+```
+
+- add client1_public_key to server config
