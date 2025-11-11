@@ -21,4 +21,4 @@ stringData:
 
     [Peer]
     PublicKey = nVbnwyh3NuUhP4ZlcAcUITu5s8hiC33bJWvlE3NNPkc=
-    AllowedIPs = 192.168.1.0/24
+    AllowedIPs = 172.16.16.0
