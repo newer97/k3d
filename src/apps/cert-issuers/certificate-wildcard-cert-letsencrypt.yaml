@@ -13,6 +13,7 @@ spec:
     - 'naser.cloud'
     - '*.naser.cloud'
     - '*.k3s-local.naser.cloud'
+    - '*.home.naser.cloud'
   secretTemplate:
     annotations:
       reflector.v1.k8s.emberstack.com/reflection-allowed: 'true'
