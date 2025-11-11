@@ -12,17 +12,17 @@ spec:
     metadata:
       labels:
         app: cloudflare-ddns
-  spec:
-    containers:
-      - name: cloudflare-ddns
-        image: oznu/cloudflare-ddns
-        env:
-          - name: API_KEY
-            valueFrom:
-              secretKeyRef:
-                name: cloudflare-api-token-secret
-                key: api-token
-          - name: ZONE
-            value: naser.cloud
-          - name: SUBDOMAIN
-            value: home
+    spec:
+      containers:
+        - name: cloudflare-ddns
+          image: oznu/cloudflare-ddns
+          env:
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cloudflare-api-token-secret
+                  key: api-token
+            - name: ZONE
+              value: naser.cloud
+            - name: SUBDOMAIN
+              value: home
