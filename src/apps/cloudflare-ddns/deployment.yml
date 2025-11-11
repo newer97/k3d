@@ -15,14 +15,14 @@ spec:
     spec:
       containers:
         - name: cloudflare-ddns
-          image: oznu/cloudflare-ddns
+          image: favonia/cloudflare-ddns
           env:
-            - name: API_KEY
+            - name: CLOUDFLARE_API_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: cloudflare-api-token-secret
                   key: api-token
-            - name: ZONE
-              value: naser.cloud
-            - name: SUBDOMAIN
-              value: home
+            - name: PROXIED
+              value: 'true'
+            - name: DOMAINS
+              value: home.naser.cloud
