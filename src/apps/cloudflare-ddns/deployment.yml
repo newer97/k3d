@@ -26,3 +26,5 @@ spec:
               value: 'true'
             - name: DOMAINS
               value: home.naser.cloud
+            - name: IP6_PROVIDER
+              value: none
