@@ -42,6 +42,7 @@ kubectl create secret generic cloudflare-api-token-secret --from-literal=api-tok
 kubectl create namespace letsencrypt-wildcard-cert
 ```
 
+we use the cf token for the cert (cert-manager, cloudflare-ddns, external-dns) namespaces
 
 # VPN
 
