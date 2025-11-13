@@ -1,0 +1,15 @@
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: argocd-dns
+  namespace: argocd
+spec:
+  endpoints:
+    - dnsName: argocd.naser.cloud
+      recordTTL: 300
+      recordType: CNAME
+      targets:
+        - home.naser.cloud
+      providerSpecific:
+        - name: external-dns.alpha.kubernetes.io/cloudflare-proxied
+          value: 'true'
