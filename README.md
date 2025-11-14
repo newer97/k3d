@@ -60,3 +60,10 @@ wg pubkey < client1_private_key > client1_public_key
 ```
 
 - add client1_public_key to server config
+
+### cloudflare origin cert
+
+```bash
+
+kubectl create secret generic cloudflare-origin-cert-naser-cloud -n traefik --from-file=tls.crt=cloudflare-origin-cert-naser-cloud.pem
+```
