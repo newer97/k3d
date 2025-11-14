@@ -65,5 +65,5 @@ wg pubkey < client1_private_key > client1_public_key
 
 ```bash
 
-kubectl create secret generic cloudflare-origin-cert-naser-cloud -n traefik --from-file=tls.crt=cloudflare-origin-cert-naser-cloud.pem
+kubectl create secret generic cloudflare-origin-cert-naser-cloud -n traefik --from-file=tls.ca=cloudflare-origin-cert-naser-cloud.pem
 ```
