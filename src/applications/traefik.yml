@@ -898,7 +898,8 @@ spec:
             # It follows the provider naming convention: https://doc.traefik.io/traefik/providers/overview/#provider-namespace
             #   - namespace-name1@kubernetescrd
             #   - namespace-name2@kubernetescrd
-            middlewares: []
+            middlewares:
+              - traefik-cf-ips-middleware@kubernetescrd
             observability: # @schema additionalProperties: false
               # -- Enables metrics for this entryPoint.
               metrics: # @schema type:[boolean, null]; default: true
@@ -960,7 +961,9 @@ spec:
           labels: {}
           # -- Additional entries here will be added to the service spec.
           # -- Cannot contain type, selector or ports entries.
-          spec: {}
+          spec:
+            externalTrafficPolicy: Local
+            loadBalancerIP: 192.168.1.241
           # externalTrafficPolicy: Cluster
           # loadBalancerIP: "1.2.3.4"
           # clusterIP: "2.3.4.5"
