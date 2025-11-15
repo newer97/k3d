@@ -937,10 +937,11 @@ spec:
         # See EXAMPLE.md for details.
         tlsOptions:
           default:
-            sniStrict: 'true'
+            sniStrict: true
             clientAuth:
+              clientAuthType: RequireAndVerifyClientCert
               secretNames:
-                - cloudflare-origin-cert-naser-cloud
+                - cloudflare-mtls-ca
 
         # -- TLS Store are created as [TLSStore CRDs](https://doc.traefik.io/traefik/https/tls/#default-certificate). This is useful if you want to set a default certificate. See EXAMPLE.md for details.
         tlsStore: {}
