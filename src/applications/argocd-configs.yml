@@ -9,7 +9,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/newer97/k3s-local-vms
+    repoURL: https://github.com/newer97/k3s-oci
     targetRevision: master
     path: src/apps/argocd-configs/
   destination:

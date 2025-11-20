@@ -5,11 +5,11 @@ metadata:
   namespace: argocd
 spec:
   endpoints:
-    - dnsName: argocd.naser.cloud
+    - dnsName: argocd-oci.naser.cloud
       recordTTL: 300
       recordType: CNAME
       targets:
-        - home.naser.cloud
+        - origin-oci.naser.cloud
       providerSpecific:
         - name: external-dns.alpha.kubernetes.io/cloudflare-proxied
           value: 'true'
