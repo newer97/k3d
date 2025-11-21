@@ -12,13 +12,13 @@ spec:
       priority: 10
       services:
         - name: argocd-server
-          port: https
+          port: 80
     - kind: Rule
       match: Host(`argocd-oci.naser.cloud`) && Header(`Content-Type`, `application/grpc`)
       priority: 11
       services:
         - name: argocd-server
-          port: https
+          port: 80
           scheme: h2c
   tls:
     secretName: letsencrypt-wildcard-cert-naser.cloud
