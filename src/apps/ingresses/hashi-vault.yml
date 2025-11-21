@@ -2,7 +2,7 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: hashicorp-vault
-  namespace: vault
+  namespace: hashicorp-vault
 spec:
   entryPoints:
     - websecure
@@ -21,7 +21,7 @@ apiVersion: externaldns.k8s.io/v1alpha1
 kind: DNSEndpoint
 metadata:
   name: hashicorp-vault-dns
-  namespace: vault
+  namespace: hashicorp-vault
 spec:
   endpoints:
     - dnsName: vault-oci.naser.cloud
