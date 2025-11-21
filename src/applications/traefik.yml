@@ -964,7 +964,7 @@ spec:
           # -- Cannot contain type, selector or ports entries.
           spec:
             externalTrafficPolicy: Local
-          # loadBalancerIP: 192.168.1.241
+            loadBalancerIP: 10.0.0.201
           # externalTrafficPolicy: Cluster
           # loadBalancerIP: "1.2.3.4"
           # clusterIP: "2.3.4.5"
