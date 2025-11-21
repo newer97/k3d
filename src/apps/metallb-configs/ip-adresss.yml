@@ -5,4 +5,5 @@ metadata:
   namespace: metallb-system
 spec:
   addresses:
-    - 10.0.0.200-10.0.0.210
+    - 84.8.122.15/32 # <--- this is the external. HOST IP
+
