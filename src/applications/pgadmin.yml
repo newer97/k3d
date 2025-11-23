@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://helm.runix.net/
-    chart: pgadmin4
+    chart: runix/pgadmin4
     targetRevision: 1.2.20
     helm:
       valuesObject:
