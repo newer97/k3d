@@ -11,7 +11,7 @@ spec:
       match: Host(`pgadmin-oci.naser.cloud`)
       priority: 10
       services:
-        - name: pgadmin-pgadmin4
+        - name: pgadmin-service
           port: 80
   tls:
     secretName: letsencrypt-wildcard-cert-naser.cloud
