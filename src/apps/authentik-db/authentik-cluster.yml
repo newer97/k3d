@@ -13,14 +13,14 @@ spec:
     #   secret:
     #     name: authentik-cluster-user
     recovery:
-      source: authentik-db-1
+      source: authentik-db
   externalClusters:
-    - name: authentik-db-1
+    - name: authentik-db
       plugin:
         name: barman-cloud.cloudnative-pg.io
         parameters:
           barmanObjectName: r2-db-store
-          serverName: authentik-db-1
+          serverName: authentik-db
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
