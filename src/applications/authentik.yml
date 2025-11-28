@@ -625,7 +625,7 @@ spec:
 
           ingress:
             # -- enable an ingress resource for the authentik server
-            enabled: false
+            enabled: true
             # -- additional ingress annotations
             annotations: {}
             # -- additional ingress labels
@@ -634,7 +634,7 @@ spec:
             ingressClassName: ''
             # -- List of ingress hosts
             hosts:
-              []
+              - authentik.naser.cloud
               # - authentik.domain.tld
 
             # -- List of ingress paths
@@ -655,7 +655,9 @@ spec:
 
             # -- ingress TLS configuration
             tls:
-              []
+              - secretName: letsencrypt-wildcard-cert-naser.cloud
+                hosts:
+                  - authentik.naser.cloud
               # - secretName: authentik-tls
               #   hosts:
               #     - authentik.domain.tld
