@@ -7,7 +7,7 @@ spec:
   schedule: '0 0 0 * * *'
   backupOwnerReference: self
   cluster:
-    name: authentik-db
+    name: authentik-db-2
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
