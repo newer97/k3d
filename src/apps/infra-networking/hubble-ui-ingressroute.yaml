@@ -8,7 +8,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`hubble-oci.naser.cloud`)
+      match: Host(`hubble.naser.cloud`)
       priority: 10
       services:
         - name: hubble-ui

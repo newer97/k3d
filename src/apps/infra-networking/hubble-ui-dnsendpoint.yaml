@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system
 spec:
   endpoints:
-    - dnsName: hubble-oci.naser.cloud
+    - dnsName: hubble.naser.cloud
       recordTTL: 300
       recordType: CNAME
       targets:
