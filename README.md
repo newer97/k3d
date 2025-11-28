@@ -58,12 +58,9 @@ argocd app create -f app-of-apps.yml
 #one password
 kubectl create secret generic onepassword-connect-token --from-literal=token='<API Token>' -n external-secrets
 
-### cf token ( for certs )
 
+
+#cellum hubble
 ```bash
-kubectl create secret generic cloudflare-api-token-secret --from-literal=api-token='<API Token>' -n cert-manager
-
-kubectl create namespace letsencrypt-wildcard-cert
+cilium hubble enable --ui
 ```
-
-we use the cf token for the cert (cert-manager, cloudflare-ddns, external-dns) namespaces
