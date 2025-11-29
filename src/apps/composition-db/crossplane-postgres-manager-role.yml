@@ -1,0 +1,19 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: crossplane-postgres-manager-role
+rules:
+  # 1. Allow managing External Secrets
+  - apiGroups: ['external-secrets.io']
+    resources: ['externalsecrets']
+    verbs: ['get', 'list', 'watch', 'create', 'update', 'patch', 'delete']
+
+  # 2. Allow managing CloudNativePG Clusters & Backups
+  - apiGroups: ['postgresql.cnpg.io']
+    resources: ['clusters', 'scheduledbackups']
+    verbs: ['get', 'list', 'watch', 'create', 'update', 'patch', 'delete']
+
+  # 3. Allow managing Barman ObjectStores
+  - apiGroups: ['barmancloud.cnpg.io']
+    resources: ['objectstores']
+    verbs: ['get', 'list', 'watch', 'create', 'update', 'patch', 'delete']
