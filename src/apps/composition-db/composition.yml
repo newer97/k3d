@@ -20,7 +20,7 @@ spec:
             inputs = oxr.spec
 
             # Core variables
-            name = oxr.metadata.name 
+            name = inputs.databaseName 
             namespace = inputs.namespace
             db_name = inputs.databaseName
             source_server = inputs.sourceServerName
