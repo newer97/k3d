@@ -14,147 +14,148 @@ spec:
       input:
         apiVersion: krm.kcl.dev/v1alpha1
         kind: KCLInput
-        source: |
-          oxr = option("params").oxr
-          inputs = oxr.spec
+        spec:
+          source: |
+            oxr = option("params").oxr
+            inputs = oxr.spec
 
-          # Core variables
-          name = oxr.metadata.name 
-          namespace = inputs.namespace
-          db_name = inputs.databaseName
-          source_server = inputs.sourceServerName
+            # Core variables
+            name = oxr.metadata.name 
+            namespace = inputs.namespace
+            db_name = inputs.databaseName
+            source_server = inputs.sourceServerName
 
-          # DIRECT MAPPING: Use the secret name provided by the user
-          secret_name = inputs.secretName
+            # DIRECT MAPPING: Use the secret name provided by the user
+            secret_name = inputs.secretName
 
-          # Hardcoded/Internal naming conventions
-          object_store_name = "r2-db-store" 
+            # Hardcoded/Internal naming conventions
+            object_store_name = "r2-db-store" 
 
-          # --- RESOURCE 1: External Secret ---
-          ext_secret = {
-              apiVersion = "external-secrets.io/v1"
-              kind = "ExternalSecret"
-              metadata = {
-                  name = secret_name  # The ES resource name matches the Secret name
-                  namespace = namespace
-              }
-              spec = {
-                  secretStoreRef = {
-                      kind = "ClusterSecretStore"
-                      name = inputs.secretStoreName
-                  }
-                  target = {
-                      creationPolicy = "Owner"
-                      name = secret_name # The actual K8s Secret created
-                  }
-                  dataFrom = [{
-                      extract = {
-                          key = inputs.secretKey
-                      }
-                  }]
-              }
-          }
+            # --- RESOURCE 1: External Secret ---
+            ext_secret = {
+                apiVersion = "external-secrets.io/v1"
+                kind = "ExternalSecret"
+                metadata = {
+                    name = secret_name  # The ES resource name matches the Secret name
+                    namespace = namespace
+                }
+                spec = {
+                    secretStoreRef = {
+                        kind = "ClusterSecretStore"
+                        name = inputs.secretStoreName
+                    }
+                    target = {
+                        creationPolicy = "Owner"
+                        name = secret_name # The actual K8s Secret created
+                    }
+                    dataFrom = [{
+                        extract = {
+                            key = inputs.secretKey
+                        }
+                    }]
+                }
+            }
 
-          # --- RESOURCE 2: Object Store ---
-          object_store = {
-              apiVersion = "barmancloud.cnpg.io/v1"
-              kind = "ObjectStore"
-              metadata = {
-                  name = object_store_name
-                  namespace = namespace
-              }
-              spec = {
-                  configuration = {
-                      destinationPath = inputs.s3Path
-                      endpointURL = inputs.s3Endpoint
-                      s3Credentials = {
-                          accessKeyId = {
-                              name = inputs.s3CredentialsSecret
-                              key = "aws-access-key-id"
-                          }
-                          secretAccessKey = {
-                              name = inputs.s3CredentialsSecret
-                              key = "aws-secret-access-key"
-                          }
-                      }
-                      wal = {
-                          compression = "gzip"
-                      }
-                  }
-              }
-          }
+            # --- RESOURCE 2: Object Store ---
+            object_store = {
+                apiVersion = "barmancloud.cnpg.io/v1"
+                kind = "ObjectStore"
+                metadata = {
+                    name = object_store_name
+                    namespace = namespace
+                }
+                spec = {
+                    configuration = {
+                        destinationPath = inputs.s3Path
+                        endpointURL = inputs.s3Endpoint
+                        s3Credentials = {
+                            accessKeyId = {
+                                name = inputs.s3CredentialsSecret
+                                key = "aws-access-key-id"
+                            }
+                            secretAccessKey = {
+                                name = inputs.s3CredentialsSecret
+                                key = "aws-secret-access-key"
+                            }
+                        }
+                        wal = {
+                            compression = "gzip"
+                        }
+                    }
+                }
+            }
 
-          # --- RESOURCE 3: CNPG Cluster ---
-          cluster = {
-              apiVersion = "postgresql.cnpg.io/v1"
-              kind = "Cluster"
-              metadata = {
-                  name = name
-                  namespace = namespace
-              }
-              spec = {
-                  instances = inputs.instances
-                  storage = {
-                      size = inputs.storageSize
-                  }
-                  
-                  # LOGIC: Recovery vs Init
-                  if source_server:
-                      bootstrap = {
-                          recovery = {
-                              source = source_server
-                          }
-                      }
-                      externalClusters = [{
-                          name = source_server
-                          plugin = {
-                              name = "barman-cloud.cloudnative-pg.io"
-                              parameters = {
-                                  barmanObjectName = object_store_name
-                                  serverName = source_server
-                              }
-                          }
-                      }]
-                  else:
-                      bootstrap = {
-                          initdb = {
-                              database = db_name
-                              owner = db_name
-                              secret = {
-                                  name = secret_name # References the user-named secret
-                              }
-                          }
-                      }
+            # --- RESOURCE 3: CNPG Cluster ---
+            cluster = {
+                apiVersion = "postgresql.cnpg.io/v1"
+                kind = "Cluster"
+                metadata = {
+                    name = name
+                    namespace = namespace
+                }
+                spec = {
+                    instances = inputs.instances
+                    storage = {
+                        size = inputs.storageSize
+                    }
+                    
+                    # LOGIC: Recovery vs Init
+                    if source_server:
+                        bootstrap = {
+                            recovery = {
+                                source = source_server
+                            }
+                        }
+                        externalClusters = [{
+                            name = source_server
+                            plugin = {
+                                name = "barman-cloud.cloudnative-pg.io"
+                                parameters = {
+                                    barmanObjectName = object_store_name
+                                    serverName = source_server
+                                }
+                            }
+                        }]
+                    else:
+                        bootstrap = {
+                            initdb = {
+                                database = db_name
+                                owner = db_name
+                                secret = {
+                                    name = secret_name # References the user-named secret
+                                }
+                            }
+                        }
 
-                  plugins = [{
-                      name = "barman-cloud.cloudnative-pg.io"
-                      isWALArchiver = True
-                      parameters = {
-                          barmanObjectName = object_store_name
-                      }
-                  }]
-              }
-          }
+                    plugins = [{
+                        name = "barman-cloud.cloudnative-pg.io"
+                        isWALArchiver = True
+                        parameters = {
+                            barmanObjectName = object_store_name
+                        }
+                    }]
+                }
+            }
 
-          # --- RESOURCE 4: Backup ---
-          backup = {
-              apiVersion = "postgresql.cnpg.io/v1"
-              kind = "ScheduledBackup"
-              metadata = {
-                  name = "${name}-daily-backup"
-                  namespace = namespace
-              }
-              spec = {
-                  schedule = inputs.backupSchedule
-                  backupOwnerReference = "self"
-                  cluster = {
-                      name = name
-                  }
-                  method = "plugin"
-                  pluginConfiguration = {
-                      name = "barman-cloud.cloudnative-pg.io"
-                  }
-              }
-          }
+            # --- RESOURCE 4: Backup ---
+            backup = {
+                apiVersion = "postgresql.cnpg.io/v1"
+                kind = "ScheduledBackup"
+                metadata = {
+                    name = "${name}-daily-backup"
+                    namespace = namespace
+                }
+                spec = {
+                    schedule = inputs.backupSchedule
+                    backupOwnerReference = "self"
+                    cluster = {
+                        name = name
+                    }
+                    method = "plugin"
+                    pluginConfiguration = {
+                        name = "barman-cloud.cloudnative-pg.io"
+                    }
+                }
+            }
 
-          items = [ext_secret, object_store, cluster, backup]
+            items = [ext_secret, object_store, cluster, backup]
