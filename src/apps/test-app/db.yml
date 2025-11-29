@@ -4,7 +4,7 @@ metadata:
   name: my-db
   namespace: test-app
 spec:
-  namespace: my-db
+  namespace: test-app
   databaseName: my-db
 
   # EXPLICIT SECRET NAMING (whould be combined)
