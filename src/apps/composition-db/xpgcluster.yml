@@ -1,0 +1,78 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xpgclusters.platform.example.com
+spec:
+  group: platform.example.com
+  names:
+    kind: XPGCluster
+    plural: xpgclusters
+  claimNames:
+    kind: PGCluster
+    plural: pgclusters
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              required:
+                - namespace
+                - databaseName
+                - secretKey
+                - s3Endpoint
+                - s3Path
+                - s3CredentialsSecret
+              properties:
+                # --- Metadata ---
+                namespace:
+                  type: string
+                  description: 'The target namespace for the resources.'
+
+                # --- Database Settings ---
+                databaseName:
+                  type: string
+                  description: 'Name of the DB and the Owner.'
+
+                sourceServerName:
+                  type: string
+                  nullable: true
+                  description: 'If set, triggers recovery mode from this server. If empty, creates fresh DB.'
+
+                # --- Infrastructure ---
+                instances:
+                  type: integer
+                  default: 1
+
+                storageSize:
+                  type: string
+                  default: '1Gi'
+
+                # --- Secrets ---
+                secretStoreName:
+                  type: string
+                  default: 'onepassword'
+
+                secretKey:
+                  type: string
+                  description: 'Item name in the Secret Store (1Password).'
+
+                # --- Object Storage ---
+                s3Endpoint:
+                  type: string
+
+                s3Path:
+                  type: string
+
+                s3CredentialsSecret:
+                  type: string
+                  description: 'K8s secret name containing AWS keys.'
+
+                # --- Backup ---
+                backupSchedule:
+                  type: string
+                  default: '0 0 0 * * *'
