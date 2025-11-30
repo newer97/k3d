@@ -1,9 +1,9 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: xpgclusters.platform.example.com
+  name: xpgclusters.platform.snaya.org
 spec:
-  group: platform.example.com
+  group: platform.snaya.org
   names:
     kind: XPGCluster
     plural: xpgclusters
