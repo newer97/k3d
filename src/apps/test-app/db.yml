@@ -8,7 +8,3 @@ spec:
   databaseName: my-db
 
   secretName: test-db
-
-  s3Endpoint: 'https://cd22089a17a320eff033da699c585941.r2.cloudflarestorage.com'
-  s3Path: 's3://k3s-oci/backups/'
-  s3CredentialsSecret: 'r2-db-backup-credentials'

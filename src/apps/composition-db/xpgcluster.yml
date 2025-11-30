@@ -63,11 +63,16 @@ spec:
                 # --- Object Storage ---
                 s3Endpoint:
                   type: string
+                  default: 'https://cd22089a17a320eff033da699c585941.r2.cloudflarestorage.com'
+                  description: 'R2 endpoint URL.'
                 s3Path:
                   type: string
+                  default: 's3://k3s-oci/backups/'
+                  description: 'R2 path for backups.'
                 s3CredentialsSecret:
                   type: string
                   description: 'K8s secret name containing AWS keys.'
+                  default: 'r2-db-backup-credentials'
 
                 # --- Backup ---
                 backupSchedule:
