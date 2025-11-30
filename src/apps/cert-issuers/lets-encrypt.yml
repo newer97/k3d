@@ -13,6 +13,7 @@ spec:
       - selector:
           dnsZones:
             - 'naser.cloud'
+            - 'snaya.org'
         dns01:
           cloudflare:
             email: naser1945.bp@gmail.com

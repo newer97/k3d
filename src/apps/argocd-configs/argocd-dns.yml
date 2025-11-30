@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   endpoints:
-    - dnsName: argocd-oci.naser.cloud
+    - dnsName: argocd.snaya.org
       recordTTL: 300
       recordType: CNAME
       targets:
