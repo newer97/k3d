@@ -50,7 +50,7 @@ spec:
                     }
                     dataFrom = [{
                         extract = {
-                            key = inputs.secretKey
+                            key = secret_name
                         }
                     }]
                 }

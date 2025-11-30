@@ -7,9 +7,7 @@ spec:
   namespace: test-app
   databaseName: my-db
 
-  # EXPLICIT SECRET NAMING (whould be combined)
-  secretName: test-db # <--- Now controlled by you
-  secretKey: test-db # The key in 1Password
+  secretName: test-db
 
   s3Endpoint: 'https://cd22089a17a320eff033da699c585941.r2.cloudflarestorage.com'
   s3Path: 's3://k3s-oci/backups/'
