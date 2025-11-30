@@ -232,7 +232,7 @@ spec:
             # -- set the postgresql hostname to talk to
             # if unset and .Values.postgresql.enabled == true, will generate the default
             # @default -- `{{ .Release.Name }}-postgresql`
-            host: 'authentik-db-2-rw.authentik'
+            host: 'authentik-db-3-rw.authentik'
             # -- postgresql Database name
             # @default -- `authentik`
             name: 'authentik'
