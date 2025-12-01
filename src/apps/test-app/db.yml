@@ -5,7 +5,7 @@ metadata:
   namespace: test-app
 spec:
   namespace: test-app
-  databaseName: my-db-1
-  sourceServerName: my-db
+  databaseName: my-db-2
+  sourceServerName: my-db-1
 
   secretName: test-db
