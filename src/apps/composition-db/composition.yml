@@ -165,3 +165,6 @@ spec:
             }
 
             items = [ext_secret, object_store, cluster, backup]
+    - step: automatically-detect-ready-composed-resources
+      functionRef:
+        name: crossplane-contrib-function-auto-ready
