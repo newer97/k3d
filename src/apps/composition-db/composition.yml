@@ -63,6 +63,9 @@ spec:
                 metadata = {
                     name = object_store_name
                     namespace = namespace
+                    annotations = {
+                        "krm.kcl.dev/ready" = "True"
+                    }
                 }
                 spec = {
                     configuration = {
@@ -144,6 +147,9 @@ spec:
                 metadata = {
                     name = "${name}-daily-backup"
                     namespace = namespace
+                    annotations = {
+                        "krm.kcl.dev/ready" = "True"
+                    }
                 }
                 spec = {
                     schedule = inputs.backupSchedule
