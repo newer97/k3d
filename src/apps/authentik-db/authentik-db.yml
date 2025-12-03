@@ -6,7 +6,7 @@ metadata:
 spec:
   namespace: authentik
   databaseName: authentik-db
-  clusterName: authentik-db-3
-  sourceServerName: authentik-db-2
+  clusterName: authentik-db-4
+  sourceServerName: authentik-db-3
 
   secretName: authentik-cluster-user
