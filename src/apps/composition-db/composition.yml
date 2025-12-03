@@ -20,7 +20,7 @@ spec:
             inputs = oxr.spec
 
             # Core variables
-            name = inputs.databaseName 
+            name = inputs.clusterName
             namespace = inputs.namespace
             db_name = inputs.databaseName
             source_server = inputs.sourceServerName
@@ -106,7 +106,12 @@ spec:
                     if source_server:
                         bootstrap = {
                             recovery = {
-                                source = source_server
+                                source = source_server # source server name
+                                database = db_name
+                                owner = db_name
+                                secret = {
+                                    name = secret_name # References the user-named secret
+                                }
                             }
                         }
                         externalClusters = [{
