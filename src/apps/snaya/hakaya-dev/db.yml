@@ -6,5 +6,6 @@ metadata:
 spec:
   namespace: hakaya-dev
   databaseName: hakaya-dev
-  clusterName: hakaya-dev-db
+  clusterName: hakaya-dev-db-1
+  sourceServerName: hakaya-dev-db
   secretName: hakaya-dev-secrets
