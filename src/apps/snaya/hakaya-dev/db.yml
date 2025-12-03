@@ -1,0 +1,10 @@
+apiVersion: platform.snaya.org/v1alpha1
+kind: PGCluster
+metadata:
+  name: hakaya-dev-db
+  namespace: hakaya-dev
+spec:
+  namespace: hakaya-dev
+  databaseName: hakaya-dev
+  clusterName: hakaya-dev-db
+  secretName: hakaya-dev-secrets
