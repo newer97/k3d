@@ -1,0 +1,15 @@
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: hakaya-dev-dns
+  namespace: hakaya-dev
+spec:
+  endpoints:
+    - dnsName: hakaya-dev.snaya.org
+      recordTTL: 300
+      recordType: CNAME
+      targets:
+        - origin-oci.naser.cloud
+      providerSpecific:
+        - name: external-dns.alpha.kubernetes.io/cloudflare-proxied
+          value: 'true'

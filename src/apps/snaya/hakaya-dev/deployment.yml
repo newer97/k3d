@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hakaya-dev
+  namespace: hakaya-dev
+  labels:
+    app: hakaya-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hakaya-dev
+  template:
+    metadata:
+      labels:
+        app: hakaya-dev
+    spec:
+      containers:
+        - name: hakaya-dev
+          image: ghcr.io/snaya-sa/hakaya-api:dev-1764754370
+          ports:
+            - containerPort: 30000
+              name: http
+          env:
+            - name: NODE_ENV
+              value: 'production'
+            - name: PORT
+              value: '30000'
+          envFrom:
+            - secretRef:
+                name: hakaya-dev-secrets
+          resources:
+            requests:
+              memory: '128Mi'
+              cpu: '100m'
+            limits:
+              memory: '512Mi'
+              cpu: '500m'
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 30000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 30000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 3
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: ghcr-registry
