@@ -47,6 +47,13 @@ spec:
                     target = {
                         creationPolicy = "Owner"
                         name = secret_name # The actual K8s Secret created
+                        template = {
+                            mergePolicy = "Merge"
+                            engineVersion = "v2"
+                            data = {
+                                DATABASE_URL = "postgresql://{{ .username }}:{{ .password }}@" + name + "-rw:5432/" + db_name
+                            }
+                        }
                     }
                     dataFrom = [{
                         extract = {
