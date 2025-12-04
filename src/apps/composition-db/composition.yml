@@ -51,7 +51,7 @@ spec:
                             mergePolicy = "Merge"
                             engineVersion = "v2"
                             data = {
-                                DATABASE_URL = "postgresql://{{ .username }}:{{ .password }}@" + name + "-rw:5432/" + db_name
+                                DATABASE_URL = "postgresql://{{ .username }}:{{ .password }}@" + inputs.clusterName + "-rw:5432/" + db_name
                             }
                         }
                     }
