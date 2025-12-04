@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: hakaya-dev
-          image: ghcr.io/snaya-sa/hakaya-api:dev-1764754370
+          image: ghcr.io/snaya-sa/hakaya-api:dev-1764843990
           ports:
             - containerPort: 30000
               name: http
