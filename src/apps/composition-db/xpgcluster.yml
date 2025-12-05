@@ -71,7 +71,7 @@ spec:
                   description: 'R2 endpoint URL.'
                 s3Path:
                   type: string
-                  default: 's3://k3s-oci/backups/'
+                  default: 's3://k3d/backups/'
                   description: 'R2 path for backups.'
                 s3CredentialsSecret:
                   type: string
