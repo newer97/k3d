@@ -9,7 +9,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/newer97/k3s-oci
+    repoURL: https://github.com/newer97/k3d
     targetRevision: master
     path: src/apps/composition-db/
   destination:

@@ -10,7 +10,7 @@ spec:
     server: https://kubernetes.default.svc
     namespace: development
   source:
-    repoURL: https://github.com/newer97/k3s-oci
+    repoURL: https://github.com/newer97/k3d
     targetRevision: master
     path: src/applications/
     directory:

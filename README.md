@@ -47,7 +47,7 @@ SEE: [Crossplane with Argo CD](https://docs.crossplane.io/latest/guides/crosspla
 ### add private repo 
 
 ```bash
-argocd repocreds add https://github.com/newer97/k3s-oci --username newer97 --password accesstoken
+argocd repocreds add https://github.com/newer97/k3d --username newer97 --password accesstoken
 ```
 
 
