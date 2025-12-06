@@ -77,6 +77,10 @@ spec:
                   type: string
                   description: 'K8s secret name containing AWS keys.'
                   default: 'r2-db-backup-credentials'
+                object_store_name:
+                  type: string
+                  default: 'r2-db-store'
+                  description: 'Name of the Object Store.'
 
                 # --- Backup ---
                 backupSchedule:

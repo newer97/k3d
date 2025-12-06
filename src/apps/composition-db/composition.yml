@@ -29,7 +29,7 @@ spec:
             secret_name = inputs.secretName
 
             # Hardcoded/Internal naming conventions
-            object_store_name = "r2-db-store" 
+            object_store_name = inputs.object_store_name
 
             # --- RESOURCE 1: External Secret ---
             ext_secret = {
