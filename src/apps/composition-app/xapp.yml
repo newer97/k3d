@@ -1,0 +1,85 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xapps.platform.snaya.org
+spec:
+  group: platform.snaya.org
+  names:
+    kind: XApp
+    plural: xapps
+  claimNames:
+    kind: App
+    plural: apps
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              required:
+                - namespace
+              properties:
+                # --- Global Settings ---
+                namespace:
+                  type: string
+                  description: 'The target namespace for the resources.'
+                secretName:
+                  type: string
+                  nullable: true
+                  description: 'The name of the Secret resource to be created by ExternalSecrets (optional, for apps that need it). And the key in 1Password.'
+
+                # --- Database Settings ---
+                database:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                      default: true
+                      description: 'Whether a database should be provisioned for this app.'
+                    databaseName:
+                      type: string
+                      description: 'Name of the DB and the Owner.'
+                    clusterName:
+                      type: string
+                      description: 'Name of the Cluster.'
+                    sourceServerName:
+                      type: string
+                      nullable: true
+                      description: 'If set, triggers recovery mode from this server. If empty, creates fresh DB.'
+                    instances:
+                      type: integer
+                      default: 1
+                    storageSize:
+                      type: string
+                      default: '1Gi'
+                    secretStoreName:
+                      type: string
+                      default: 'onepassword'
+                    s3Endpoint:
+                      type: string
+                      default: 'https://cd22089a17a320eff033da699c585941.r2.cloudflarestorage.com'
+                      description: 'R2 endpoint URL.'
+                    s3Path:
+                      type: string
+                      default: 's3://k3d/backups/'
+                      description: 'R2 path for backups.'
+                    s3CredentialsSecret:
+                      type: string
+                      description: 'K8s secret name containing AWS keys.'
+                      default: 'r2-db-backup-credentials'
+                    object_store_name:
+                      type: string
+                      default: 'r2-db-store'
+                      description: 'Name of the Object Store.'
+                    backupSchedule:
+                      type: string
+                      default: '0 0 0 * * *'
+                  # required:
+                  #   - databaseName
+                  #   - s3Endpoint
+                  #   - s3Path
+                  #   - s3CredentialsSecret
